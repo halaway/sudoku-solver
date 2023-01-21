@@ -16,7 +16,7 @@ Secondly, the project goes a step further and creates a window displaying a boar
 It allows for a text file with values to be converted into a 2D vector. Once diplayed, the user can select a given grid location 
 and input a value between _1-9_ or _"spacebar"_ or _"."_ to remove current value. To solve, the user presses _"enter"_. It's important to note 
 that a board can have more than one solution depending on the number of hints given and their position on the board with a 
-minimum of 17 positions needed to find a solution.
+minimum of 17 positions needed to find a solution. 
 
 ## Features
 
@@ -53,5 +53,6 @@ If you have a suggestion for what should be improved, your contributions will be
 
 ## Note
 There aren't sufficient error cases for using grids of larger or smaller sizes. Also, the window is of a certain width and height, 
-but, future impovements can be made to account for changes in window size as well as for changes in the Board size greater than or less than _9_. 
+but, future impovements can be made to account for changes in window size as well as for changes in the Board size greater than or less than _9_.
+The "OpenSans-Regular.ttf" or any suitable font will also have to be downloaded to use. 
 

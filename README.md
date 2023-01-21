@@ -14,7 +14,7 @@ repeating values within sub-grids. If a solution is found, the vector is updated
 
 Secondly, the project goes a step further and creates a window displaying a board of size _9x9_ with the hints of a given Sudoku board. 
 It allows for a text file with values to be converted into a 2D vector. Once diplayed, the user can select a given grid location 
-and input a value between _1-9_ or _"spacebar"_ or _"."_ to remove current value. To solve the user presses _"enter"_. It's important to note 
+and input a value between _1-9_ or _"spacebar"_ or _"."_ to remove current value. To solve, the user presses _"enter"_. It's important to note 
 that a board can have more than one solution depending on the number of hints given and their position on the board with a 
 minimum of 17 positions needed to find a solution.
 

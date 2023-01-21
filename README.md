@@ -9,8 +9,8 @@ Applying Data Structures and SDL Graphics
 
 Firstly, this project uses a Backtracking algortithm to find the solution of a given Sudoku Board in a the form of a 2D vector. 
 A board can be of any size NxN, however, boards _4x4_, _6x6_, _9x9_, and _16x16_ lead to possible solutions where sub-grids are taken 
-into account to ensure no number is repeated. All other grid sizes do not account for repeating values within sub-grids to coincide
-with the rules of Sudoku. If a solution is found, the vector is updated with the possible solutions. 
+into account to ensure no number is repeated to coincide with the rules of Sudoku. All other grid sizes do not account for 
+repeating values within sub-grids. If a solution is found, the vector is updated with the possible solutions. 
 
 Secondly, the project goes a step further and creates a window displaying a board of size _9x9_ with the hints of a given Sudoku board. 
 It allows for a text file with values to be converted into a 2D vector. Once diplayed, the user can select a given grid location 

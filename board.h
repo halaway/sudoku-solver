@@ -41,6 +41,16 @@ public:
 
     }
 
+
+    //Check whether any key has been pressed
+    bool pressedKeys(const Uint8* keyBoardState){
+        for(int i = 0; i < SDL_NUM_SCANCODES; i++){
+            if( keyBoardState[i] != 0)
+                return true;
+        }
+        return false;
+    }
+
     //Drawing N x N Grid
     void drawBoard( std::vector<std::vector<std::string> > &vect){
 
@@ -161,7 +171,8 @@ public:
 
         //SOLVE FOR RETURN KEY
         if( windowEvent.button.button == SDL_SCANCODE_RETURN ){
-            SudukoSolves(matrixBoard);    
+            //Check whether board is solved
+            boardSolved = SudukoSolves(matrixBoard);    
         }
 
         rect.x = cols * 100;
@@ -170,6 +181,7 @@ public:
         SDL_SetRenderDrawColor(renderer, 0,0,0,0);
         SDL_RenderDrawRect(renderer, &rect);
         
+
         for(int i = 0; i < GridSize; i++){
                 for(int j = 0; j < GridSize; j++ ){
                     rect.x =  j * rect.w;
@@ -201,9 +213,16 @@ public:
                     SDL_RenderCopy(renderer, manyTextures, NULL, &newRect);
                 }
             }
+        
+
 
        SDL_RenderPresent( renderer );
 
+    }
+
+
+    bool getSolvedState(){
+        return boardSolved;
     }
 
     //Destructor    
@@ -230,6 +249,9 @@ private:
 
     //Renderer
     SDL_Renderer *renderer;
+
+    //Solved Board
+    bool boardSolved = false; 
 
 };
 

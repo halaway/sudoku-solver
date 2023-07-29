@@ -11,6 +11,9 @@
 
 std::ifstream fin("file.txt"); //INPUT FILE UNSOLVED BOARD
 
+//g++ -std=c++17 mainP.cpp -o prog -lSDL2 -lSDL2 -lSDL2_ttf -ldl
+// ./prog
+
 
 int main(int argc, char *argv[]){
     
@@ -32,7 +35,13 @@ int main(int argc, char *argv[]){
     //Track Cursor Position coordindates
     int xPos, yPos = 0;
 
-
+    //EDITTED
+    //Event Tracking 
+    SDL_Event windowEvent;
+    gridBoard.updateBoard(xPos, yPos, state, windowEvent);
+    
+  
+    
     while(true){
 
         //Event Tracking 
@@ -51,9 +60,14 @@ int main(int argc, char *argv[]){
                 break;
             }
         }
+
+        //Update Board Accordingly & Check Board State
+        if( gridBoard.pressedKeys(state) && !gridBoard.getSolvedState() ){
+            gridBoard.updateBoard(xPos, yPos, state, windowEvent);
+        }
     
         //Update Board Accordingly to Input 
-        gridBoard.updateBoard(xPos, yPos, state, windowEvent);
+        //gridBoard.updateBoard(xPos, yPos, state, windowEvent);
 
     }
 

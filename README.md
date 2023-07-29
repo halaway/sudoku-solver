@@ -22,7 +22,7 @@ minimum of 17 positions needed to find a solution.
 ## Features
 
 - Uses SDL Graphics to create a window and display a 9x9 grid.
-- 
+- Multi-Threading Asynchronous Operations.
 
 ## Run 
 

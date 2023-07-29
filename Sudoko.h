@@ -6,6 +6,9 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+ 
+#include<thread>
+#include <future>    // Concurrency
 
 
 
@@ -181,9 +184,16 @@ bool leftRight(std::vector<std::vector<std::string> > const vect, int row, int c
 
 //Recursive Sudoku Solver 
 bool SudukoSolves(std::vector<std::vector<std::string> >&vect, std::vector<std::string> arr){
-    //Find Empty Cell
-    int row = FindEmptyX(vect);
-    int col = FindEmptyY(vect);
+    //Finding Empty Cell
+    //Create Asynchronous Operation for Empty Row  
+    std::future<int> tRow = std::async(std::launch::async, FindEmptyX, vect);
+
+    //Second Asynchronous Operation for Empty Column
+    std::future<int> tCol = std::async(std::launch::async, FindEmptyY, vect);
+
+    //Retrieving values  
+    int row = tRow.get();
+    int col = tCol.get();
 
     //Keep track of values 
     std::string num;
@@ -225,7 +235,7 @@ bool SudukoSolves(std::vector<std::vector<std::string> >&vect, std::vector<std::
 
 
 //Recursive Utility Function
-void SudukoSolves(std::vector<std::vector<std::string> >& vect){
+bool SudukoSolves(std::vector<std::vector<std::string> >& vect){
     std::vector<std::string> arr; 
 
     
@@ -235,9 +245,11 @@ void SudukoSolves(std::vector<std::vector<std::string> >& vect){
 
     if ( SudukoSolves(vect, arr) != 0 ){
         std::cout<<"Solved!"<<std::endl;
+        return true;
     }
     else{
-    std::cout<<"No Solution"<<std::endl;
+        std::cout<<"No Solution"<<std::endl;
+        return false;
     }
 
 

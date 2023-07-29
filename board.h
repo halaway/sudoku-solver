@@ -220,7 +220,7 @@ public:
 
     }
 
-
+    //Retrieve status of Board
     bool getSolvedState(){
         return boardSolved;
     }

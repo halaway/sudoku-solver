@@ -1,10 +1,6 @@
 # Sudoku Solver
 Applying Data Structures, SDL Graphics and Multi-Threading
 
-## Dependencies
-- Windows 10 / Mac
-- c++11
-
 ## Description 
 
 Firstly, this project uses a Backtracking algorithm to find the solution of a given Sudoku Board in the form of a 2D vector. 
@@ -12,12 +8,31 @@ The project also supports concurrency through the implementation of multithreadi
 
 A board can be of any size NxN, however, boards _4x4_, _6x6_, _9x9_, and _16x16_ lead to possible solutions where sub-grids are taken 
 into account to ensure no number is repeated, coinciding with the rules of Sudoku. All other grid sizes do not account for 
-repeating values within sub-grids. If a solution is found, the vector is updated with the possible solutions. 
+repeating values within sub-grids. The vector is updated with the possible solutions if a solution is found. 
 
 Secondly, the project goes further and creates a window displaying a board of size _9x9_ with the hints of a given Sudoku board. 
-It allows for a text file with values to be converted into a 2D vector. Once displayed, the user can select a given grid location 
+It allows a text file with values to be converted into a 2D vector. Once displayed, the user can select a given grid location 
 and input a value between _1-9_ or _"spacebar"_ or _"."_ to remove the current value. To solve, the user presses _"enter"_. It's important to note that a board can have more than one solution depending on the number of hints given and their position on the board with a 
-minimum of 17 positions needed to find a solution. 
+minimum of 17 positions needed to find a solution.
+
+## Summary
+To reliably test the performance of the program, we can use a [dataset](https://www.kaggle.com/datasets/radcliffe/3-million-sudoku-puzzles-with-ratings) containing over 3 million example Sudoku Boards with their accompanying solutions, given clues, and difficulty levels. The data was then aggregated based on their difficulty and average clues per board:
+
+Difficulty | #Score | #Average Clues |
+--- | --- | --- |
+Average | 2 &gt; σ &ge; 0 |  24.4 | 
+Easy | 4 &gt; σ &ge; 2 | 25.1 | 
+Medium | 6 &gt; σ &ge; 4 | 24.5 | 
+Hard | 8 &ge; σ &gt; 6 | 24.3 | 
+
+Each row containing a puzzle was then parsed into its own CSV for testing and launching the application. Our algorithm was run against each category of test boards using two methods for solving: Sequential and Concurrent. The first approach loaded in the data set and solved each row with each traversal of our total boards. The second approach, assigned each board to its own thread when passing a board as a reference, before finally joining all threads. The execution time was then calculated for both methods while ignoring I/O operations.
+
+## Execution Overview
+The following chart highlights the execution times for multiple boards per difficulty rating, with and without the use of threads. Notably, easier boards with greater _clues_ resulted in faster execution times. It's also important to note that fewer clues may take longer to compute, since the necessary values to backtrack increases significantly. However, trivial approaches to solving these boards may actually prove less resource-intensive and challenging overall.
+
+<img width="544" alt="Screen Shot 2024-04-13 at 6 04 28 AM" src="https://github.com/halaway/sudoku-solver/assets/31904474/8b3dff46-3d9b-4fa6-9f21-aa003c6445ab">
+
+
 
 ## Features
 
@@ -26,10 +41,12 @@ minimum of 17 positions needed to find a solution.
 
 ## Run 
 
-To execute the _main.cpp_, open the terminal, and enter: 
+To execute the _main.cpp_: 
 
-- g++ -std=c++17 main.cpp -o prog -lSDL2 -lSDL2_ttf -ldl
-- ./prog
+```
+g++ -std=c++17 main.cpp -o prog -lSDL2 -lSDL2_ttf -ldl
+./prog
+```
 
 
 ## Usage

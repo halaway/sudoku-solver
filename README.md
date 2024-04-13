@@ -10,13 +10,15 @@ A board can be of any size NxN, however, boards _4x4_, _6x6_, _9x9_, and _16x16_
 into account to ensure no number is repeated, coinciding with the rules of Sudoku. All other grid sizes do not account for 
 repeating values within sub-grids. The vector is updated with the possible solutions if a solution is found. 
 
+### Graphical User Interface
+
 Secondly, the project goes further and creates a window displaying a board of size _9x9_ with the hints of a given Sudoku board. 
 It allows a text file with values to be converted into a 2D vector. Once displayed, the user can select a given grid location 
 and input a value between _1-9_ or _"spacebar"_ or _"."_ to remove the current value. To solve, the user presses _"enter"_. It's important to note that a board can have more than one solution depending on the number of hints given and their position on the board with a 
 minimum of 17 positions needed to find a solution.
 
 ## Summary
-To reliably test the performance of the program, we can use a [dataset](https://www.kaggle.com/datasets/radcliffe/3-million-sudoku-puzzles-with-ratings) containing over 3 million example Sudoku Boards with their accompanying solutions, given clues, and difficulty levels. The data was then aggregated based on their difficulty and average clues per board:
+To reliably test the performance of the program, we can use a [dataset](https://www.kaggle.com/datasets/radcliffe/3-million-sudoku-puzzles-with-ratings) containing over 3 million example Sudoku Boards of size _9x9_, with their accompanying solutions, given clues, and difficulty levels. The data was then aggregated based on their difficulty and average clues per board:
 
 Difficulty | #Score | #Average Clues |
 --- | --- | --- |

@@ -6,6 +6,8 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <fstream>
+#include <sstream>
  
 #include<thread>
 #include <future>    // Concurrency
@@ -76,6 +78,60 @@ std::vector<std::vector<std::string> > readIn(std::ifstream& fileInput, int size
     return newVector;
 
 }
+
+
+//Parsing CSV with Input File
+std::vector<std::vector<std::string>> boardMatrix(std::ifstream& fileName) {
+    // Creating input string
+    std::string line;
+
+    std::vector<std::vector<std::string>> finalVec;
+    while (getline(fileName, line)) {
+        std::stringstream ss(line);
+        std::vector<std::string> myVec;
+        std::string token;
+        while (getline(ss, token, ',')) {
+            if( token.empty() || token == "0" ){
+              myVec.push_back(".");
+            }
+          else{
+            myVec.push_back(token);
+          }
+        }
+        finalVec.push_back(myVec);
+    }
+    fileName.close(); 
+    return finalVec;
+}
+
+
+//Creating arrays based on CSV containing a puzzle per line
+std::vector<std::vector<std::string>> testCSV(std::ifstream& file) {
+
+    std::vector<std::vector<std::string>> puzzle(9, std::vector<std::string>(9));
+    std::string line;
+    if (!getline(file, line)) {
+        std::cerr << "Error: Unable to read line from file" << std::endl;
+        return {};
+    }
+    std::stringstream ss(line);
+    std::string token;
+    int row = 0, col = 0;
+    while (getline(ss, token, ',')) {
+        if (token.empty() || token == "0") {
+            puzzle[row][col] = ".";
+        } else {
+            puzzle[row][col] = token;
+        }
+        col++;
+        if (col == 9) {
+            col = 0;
+            row++;
+        }
+    }
+    return puzzle;
+}
+
 
 
 //Print 2D Vector 

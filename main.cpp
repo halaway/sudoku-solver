@@ -11,7 +11,10 @@
 
 std::ifstream fin("file.txt"); //INPUT FILE UNSOLVED BOARD
 
-//g++ -std=c++17 mainP.cpp -o prog -lSDL2 -lSDL2 -lSDL2_ttf -ldl
+std::ifstream file_name("tests/example10.csv"); // INPUT FILE EXAMPLE 3
+
+
+//g++ -std=c++17 main.cpp -o prog -lSDL2 -lSDL2 -lSDL2_ttf -ldl
 // ./prog
 
 
@@ -21,7 +24,12 @@ int main(int argc, char *argv[]){
     std::vector<std::vector<std::string> > matrixBoard = CreateVect(GridSize);
     
     //Create 9 x 9 array from text file
-    matrixBoard = readIn(fin, 9);
+    //matrixBoard = readIn(fin, 9);
+
+    //Creating 9 x 9 array from CSV file
+    matrixBoard = boardMatrix(file_name);
+
+
 
     //Create Sudoku Board Object 
     SudukoBoard gridBoard; 

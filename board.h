@@ -188,6 +188,11 @@ public:
                     rect.y = i * rect.h;
                     SDL_SetRenderDrawColor(renderer, 0,0,0,0);
                     SDL_RenderDrawRect(renderer, &rect);
+
+                    if (i % 3 == 0 && j % 3 == 0) {
+                        SDL_Rect thickerRect = { rect.x - 2, rect.y - 2, rect.w * 3 + 4, rect.h * 3 + 4 };
+                        SDL_RenderDrawRect(renderer, &thickerRect);
+                    }
                     
                     //Create New Rectangle
                     SDL_Rect newRect;
